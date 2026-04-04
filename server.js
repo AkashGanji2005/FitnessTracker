@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -7,10 +8,22 @@ const Exercise = require("./models/Exercise");
 const DailyLog = require("./models/DailyLog");
 const Goal = require("./models/Goal");
 
+const authRoutes = require("./server/routes/auth");
+const workoutRoutes = require("./server/routes/workouts");
+const logRoutes = require("./server/routes/logs");
+const goalRoutes = require("./server/routes/goals");
+const adminRoutes = require("./server/routes/admin");
+
 const app = express();
 app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/fittrack")
+app.use("/auth", authRoutes);
+app.use("/workouts", workoutRoutes);
+app.use("/logs", logRoutes);
+app.use("/goals", goalRoutes);
+app.use("/admin", adminRoutes);
+
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
@@ -113,6 +126,7 @@ app.post("/goals", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
