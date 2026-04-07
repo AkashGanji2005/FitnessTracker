@@ -38,7 +38,7 @@ Then navigate into the client folder and install frontend dependencies:
   cd ..
 
 =====================================
-STEP 2 — CREATE THE ENV FILE
+STEP 2— CREATE THE ENV FILE
 =====================================
 From the root project folder, create a `.env` file based on `.env.example`.
 
