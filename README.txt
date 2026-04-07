@@ -123,3 +123,5 @@ PORT SUMMARY
 =====================================
   Backend API:      http://localhost:3001
   Frontend (React): http://localhost:5173
+
+updated by Devin
