@@ -38,7 +38,23 @@ Then navigate into the client folder and install frontend dependencies:
   cd ..
 
 =====================================
-STEP 2 — SEED THE DATABASE
+STEP 2 — CREATE THE ENV FILE
+=====================================
+From the root project folder, create a `.env` file based on `.env.example`.
+
+If you are using macOS or Linux, run:
+  cp .env.example .env
+
+If you are using Windows Command Prompt, run:
+  copy .env.example .env
+
+The `.env` file should contain:
+  MONGO_URI=mongodb://127.0.0.1:27017/fittrack
+  JWT_SECRET=your_secret_here
+  PORT=3001
+
+=====================================
+STEP 3 — SEED THE DATABASE
 =====================================
 From the root project folder, run:
   node seed.js
@@ -55,7 +71,7 @@ WARNING: seed.js clears the users and exercises collections before inserting.
 Only run it once before grading, not again after users have been created.
 
 =====================================
-STEP 3 — START THE WEB SERVER
+STEP 4 — START THE WEB SERVER
 =====================================
 From the root project folder, run:
   node server.js
@@ -66,7 +82,7 @@ You should see:
   MongoDB Connected
 
 =====================================
-STEP 4 — START THE REACT APPLICATION
+STEP 5 — START THE REACT APPLICATION
 =====================================
 In a second terminal, navigate to the client folder and run:
   cd client
