@@ -13,11 +13,12 @@ export default function Navbar() {
 
   return (
     <nav>
+      <span className="nav-brand">FitTrack</span>
       <Link to="/dashboard">Dashboard</Link>
       <Link to="/log">Log Workout</Link>
       <Link to="/goals">Goals</Link>
       {role === "admin" && <Link to="/admin">Admin</Link>}
-      <button onClick={logout}>Logout</button>
+      <button className="nav-logout" onClick={logout}>Logout</button>
     </nav>
   );
 }

@@ -1,3 +1,5 @@
 node_modules
 .env
 test-api.js
+.DS_Store
+client/dist

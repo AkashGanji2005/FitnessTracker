@@ -13,6 +13,7 @@ const workoutRoutes = require("./server/routes/workouts");
 const logRoutes = require("./server/routes/logs");
 const goalRoutes = require("./server/routes/goals");
 const adminRoutes = require("./server/routes/admin");
+const dashboardRoutes = require("./server/routes/dashboard");
 
 const app = express();
 app.use(express.json());
@@ -22,6 +23,7 @@ app.use("/workouts", workoutRoutes);
 app.use("/logs", logRoutes);
 app.use("/goals", goalRoutes);
 app.use("/admin", adminRoutes);
+app.use("/dashboard", dashboardRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))

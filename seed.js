@@ -1,19 +1,20 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const User = require("./models/User");
 const Exercise = require("./models/Exercise");
 
-mongoose.connect("mongodb://127.0.0.1:27017/fittrack")
+mongoose.connect(process.env.MONGO_URI)
   .then(async () => {
     console.log("Connected to MongoDB");
 
-    // 🔥 CLEAR OLD DATA (optional but useful during testing)
     await User.deleteMany({});
     await Exercise.deleteMany({});
 
-    // 🔐 CREATE ADMIN USER (grader requirement)
+    const hashedPassword = await bcrypt.hash("admin123", 10);
     const admin = new User({
       username: "admin",
-      password: "admin123", // backend will hash later
+      password: hashedPassword,
       role: "admin",
       weight_kg: 75
     });

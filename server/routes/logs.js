@@ -23,7 +23,13 @@ router.post("/", verifyToken, async (req, res) => {
     if (!exercise) return res.status(404).json({ error: "Exercise not found" });
     if (!user) return res.status(404).json({ error: "User not found" });
 
-    const calories_burned = exercise.MET * user.weight_kg * session.duration / 60;
+    let calories_burned;
+    if (exercise.type === "cardio") {
+      calories_burned = exercise.MET * user.weight_kg * session.duration / 60;
+    } else {
+      // strength: approx 3 seconds per rep
+      calories_burned = (sets * reps * exercise.MET * user.weight_kg * 3) / 3600;
+    }
 
     const log = new DailyLog({ sessionId, exerciseId, userId, reps, sets, distance_km, calories_burned });
     const saved = await log.save();
